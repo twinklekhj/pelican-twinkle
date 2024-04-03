@@ -61,11 +61,13 @@ html {
   white-space: -moz-pre-wrap;
   word-wrap: break-word;
 }
-.ellipsis(){
+
+.ellipsis() {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .ellipsis-line(@line: 2) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -693,14 +695,33 @@ figure {
 }
 
 /* No Results */
+ul:has(> .no-results),
+ol:has(> .no-results) {
+  .flex-box(@flex-direction: row, @justify-content: center) !important;
+
+  & > li.no-results {
+    gap: 1rem;
+    border: none;
+    width: 50%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: auto;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}
+
 .no-results {
   width: 100%;
 
-  & .info {
-    .flex-box(@justify-content: center);
+  & > .info {
+    .flex-box(@justify-content: center) !important;
 
     & img {
-      max-width: 15rem;
+      width: 15rem;
+      max-width: 30%;
     }
 
     & .info-desc {
@@ -716,10 +737,6 @@ figure {
   .flex-box(@flex-direction: row, @gap: var(--gap));
   margin-top: var(--gap);
 
-  &:has(> .no-results) {
-    .flex-box(@flex-direction: row, @justify-content: center);
-  }
-
   & img {
     height: 11rem;
     width: 100%;
@@ -730,9 +747,6 @@ figure {
     width: calc(50% - var(--gap) / 2);
 
     & .category-container {
-      background: var(--main-bg-color);
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
     }
 
   }

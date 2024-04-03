@@ -17,6 +17,9 @@
   main .sidebar.static + .content {
     margin-left: 0;
   }
+  .no-results {
+    width: 80% !important;
+  }
   .profile-container {
     flex-direction: row;
     background: var(--main-bg-color);
@@ -102,11 +105,11 @@
   .post-list li > .logo.noimage {
     display: none;
   }
+  .no-results {
+    width: 90% !important;
+  }
   .category-list img {
     height: 9rem;
-  }
-  .category-list li .category-container {
-    padding: 0.7rem;
   }
   .tag-list {
     display: -webkit-inline-box;
@@ -161,9 +164,6 @@
   }
   .category-list img {
     height: 6rem;
-  }
-  .category-list li .category-container {
-    padding: 0.5rem;
   }
 }
 /*# sourceMappingURL=mobile.css.map */

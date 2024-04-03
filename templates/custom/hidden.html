@@ -1,10 +1,12 @@
 {% extends "template/base.html" %}
+{% block title %}{{ super() }} - Hidden Articles{% endblock %}
 {% block content_title %}
+    <h6 class="desc">Hidden</h6>
     <h3 class="title">Posts</h3>
 {% endblock %}
 {% block content %}
     <ol class="post-list">
-        {% for article in articles_page.object_list %}
+        {% for article in hidden_articles %}
             {{ section(article) }}
         {% else %}
             <li class="no-results">
@@ -13,7 +15,7 @@
                     <div class="info-desc">
                         <h3>No Posts Found</h3>
                         <p>
-                            Hey, There is no post.<br/>
+                            Hey, There is no hidden post.<br/>
                             Write article in <code>content</code>. Follow below <code>.md</code> file
                         </p>
                     </div>
@@ -22,25 +24,10 @@
             </li>
         {% endfor %}
     </ol>
-
-    {% include 'components/_pagination.html' %}
 {% endblock content %}
 
 {% macro section(article) %}
     <li>
-        {% if article.featured_image %}
-            {# Representation Image Plugin Start #}
-            <div class="logo">
-                <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-                   title="Permalink to {{ article.title }}">
-                    <img src="{{ article.featured_image|replace('{static}', SITEURL) }}"
-                         alt="{{ article.title|capitalize }} Preview Image">
-                </a>
-            </div>
-            {# Representation Image Plugin End #}
-        {% else %}
-            <div class="logo noimage">No Image</div>
-        {% endif %}
         <div class="info">
             <h4 class="title">
                 <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"

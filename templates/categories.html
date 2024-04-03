@@ -10,7 +10,7 @@
         {% for category, articles in categories %}
             {% set ns = namespace() %}
             {% set ns.imageUrl = '' %}
-            {% set ns.defaultImageUrl = SITEURL + '/{{ THEME_STATIC_DIR }}/images/icon_category.svg' %}
+            {% set ns.defaultImageUrl = SITEURL + '/' + THEME_STATIC_DIR + '/images/icon_category.svg' %}
 
             {% for article in articles if article.featured_image %}
                 {% set ns.imageUrl = article.featured_image|replace('{static}', SITEURL) %}

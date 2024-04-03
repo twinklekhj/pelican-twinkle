@@ -1,27 +1,38 @@
 const Store = {
     theme: {
-        value: localStorage.theme || document.body.dataset.theme || 'light',
+        value: localStorage.theme || "light",
         reducers: {
             setTheme: function (theme) {
                 Store.theme.value = theme;
-                Store.theme.observer.notify(theme)
+                Store.theme.reducers.applyTheme();
             },
             applyTheme: function () {
-                const value = Store.theme.value
+                const value = Store.theme.value;
+
                 localStorage.theme = value;
                 document.body.dataset.theme = value;
+
+                const metaThemeObj = document.querySelector('meta[name="theme-color"]');
+                // 테마 컬러 추가
+                if (value === 'dark') {
+                    metaThemeObj.setAttribute('content', '#1e1e1e')
+                } else {
+                    metaThemeObj.setAttribute('content', 'white')
+                }
+
+                Store.theme.observer.notify(value);
             }
         },
         observer: {
             listeners: [],
-            addObserver: function(listener){
+            addObserver: function (listener) {
                 return Store.theme.observer.listeners.push(listener) - 1;
             },
-            removeObserver: function(id){
+            removeObserver: function (id) {
                 Store.theme.observer.listeners.splice(id, 1);
             },
-            notify: function(value){
-                for(let listener of Store.theme.observer.listeners){
+            notify: function (value) {
+                for (let listener of Store.theme.observer.listeners) {
                     listener(value);
                 }
             }
@@ -33,7 +44,7 @@ const Store = {
             setOffset: function (offset) {
                 Store.offset.value = offset;
             },
-            applyOffset: function(){
+            applyOffset: function () {
                 const value = Store.offset.value;
                 if (value === 0) {
                     document.body.classList.remove('scrolled')
@@ -55,14 +66,14 @@ const Action = {
 
         Store.theme.reducers.applyTheme();
     },
-    applyTheme: function(){
+    applyTheme: function () {
         Store.theme.reducers.applyTheme();
     },
-    changeOffset: function(offset){
+    changeOffset: function (offset) {
         Store.offset.reducers.setOffset(offset);
         Store.offset.reducers.applyOffset();
     },
-    applyOffset: function(){
+    applyOffset: function () {
         Store.offset.reducers.applyOffset();
     }
 }
