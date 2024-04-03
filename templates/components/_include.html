@@ -1,0 +1,75 @@
+<meta charset="utf-8"/>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!-- manifest -->
+<link rel="manifest" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/manifest.json">
+
+<!-- favicon -->
+<link rel="icon" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/favicon.svg">
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ SITEURL }}">
+
+<!-- Cache -->
+<meta http-equiv="refresh" content="6000">
+<meta http-equiv="Cache-Control" content="max-age=31536000"/>
+
+<!-- OG -->
+<meta name="title" content="{{ OG_TITLE }}">
+<meta name="description" content="{{ OG_DESCRIPTION }}">
+<meta name="apple-mobile-web-app-title" content="{{ OG_TITLE }}">
+<meta name="application-name" content="{{ OG_TITLE }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ SITEURL }}">
+<meta property="og:title" content="{{ OG_TITLE }}">
+<meta property="og:description" content="{{ OG_DESCRIPTION }}">
+<meta property="og:site_name" content="{{ OG_TITLE }}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="{{ OG_TITLE }}">
+<meta property="twitter:url" content="{{ SITEURL }}">
+<meta property="twitter:description" content="{{ OG_DESCRIPTION }}">
+
+
+<!-- Stylesheet -->
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/fonts/notokr.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/fonts/sansation.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pygments.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/lib/code/style.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/dark.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/mobile.css">
+
+{% if FEED_ATOM %}
+    <link href="{{ SITEURL }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate"
+          title="{{ SITENAME }} ATOM Feed"/>
+{% endif %}
+{% if FEED_RSS %}
+    <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/atom+xml" rel="alternate"
+          title="{{ SITENAME }} RSS Feed"/>
+{% endif %}
+
+{% if article and article.latex %}
+    {{ article.latex }}
+{% endif %}
+
+<script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/lib/webfont/webfont.min.js"></script>
+
+<script>
+    WebFont.load({
+        google: {
+            "families": ["Lato:300,400,700,900"]
+        },
+        custom: {
+            "families": ["Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
+            urls: ['{{ SITEURL }}/{{ THEME_STATIC_DIR }}/lib/webfont/fonts.css']
+        },
+    });
+</script>
+<script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/main.js"></script>

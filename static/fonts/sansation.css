@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* Main Font */
+@font-face {
+  font-family: "Sansation";
+  font-weight: 300;
+  src: url("./sansation/Sansation_Light.ttf");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sansation";
+  font-weight: 500;
+  src: url("./sansation/Sansation_Regular.ttf");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sansation";
+  font-weight: 700;
+  src: url("./sansation/Sansation_Bold.ttf");
+  font-display: swap;
+}
+/*# sourceMappingURL=sansation.css.map */

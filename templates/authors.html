@@ -1,0 +1,11 @@
+{% extends "template/base.html" %}
+{% block content_title %}
+    <h4 class="desc">Authors</h4>
+{% endblock %}
+{% block content %}
+    <ul>
+        {% for author, articles in authors %}
+            <li><a href="{{ SITEURL }}/{{ author.url }}">{{ author.name }} ({{ articles|length }})</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

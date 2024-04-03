@@ -1,0 +1,99 @@
+{% macro github_user(username) %}
+    <div class="logo">
+        <figure>
+            <div class="logo-wrapper">
+                <div class="logo-avatar">
+                    <img src="https://github.com/{{ username }}.png"
+                         alt="{{ username|capitalize }} Profile" title="{{ username|capitalize }} Profile"/>
+                </div>
+            </div>
+            <figcaption>
+                <a href="https://github.com/{{ username }}" target="_blank">@{{ username }}</a>
+            </figcaption>
+        </figure>
+    </div>
+{% endmacro %}
+
+{% macro icon(name, type) %}
+    {% if type == 'fontawesome' %}
+        <i class="fas fa-{{ name }} icon"></i>
+    {% else %}
+        <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/icon_{{ name }}.svg" alt="{{ name }} Icon"
+             class="icon {{ 'icon-black' if name in ['home', 'github'] }}"/>
+    {% endif %}
+{% endmacro %}
+
+<aside class="sidebar">
+    <div class="sidebar-widget profile-container">
+        <div class="logo-area">
+            {% if AUTHOR_INFO.GITHUB %}
+                {{ github_user(AUTHOR_INFO.GITHUB) }}
+            {% endif %}
+        </div>
+        <div>
+            <div class="info-area">
+                <h4>{{ AUTHOR }}</h4>
+                {% if AUTHOR_INFO.DESCRIPTION %}
+                    <p>{{ AUTHOR_INFO.DESCRIPTION }}</p>
+                {% endif %}
+            </div>
+            {% if LINKS %}
+                <ul class="link-area">
+                    {% for name, link, type in LINKS %}
+                        <li><a href="{{ link }}" target="_blank">{{ icon(name, type) }}</a></li>
+                    {% endfor %}
+                    {% if FEED_ALL_ATOM %}
+                        <li><a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" target="_blank">{{ icon('rss', 'image') }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
+    <div>
+        {% block categories %}
+            <section class="sidebar-widget">
+                <div class="widget-title"><a href="{{ SITEURL }}/archives.html">Archives</a></div>
+                <div class="widget-title"><a href="{{ SITEURL }}/categories.html">Categories</a></div>
+                <div class="widget-content">
+                    {% if categories %}
+                        <ul class="category-list">
+                            {% for element, articles in categories %}
+                                <li class="{{ 'active' if element == category }}">
+                                    <a href="{{ SITEURL }}/{{ element.url }}">
+                                        ㄴ <i
+                                            class="fas {{ 'fa-folder-open' if element == category else 'fa-folder' }}"></i> {{ element.name|capitalize }}
+                                        ({{ articles|length }})
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No Categories found</p>
+                    {% endif %}
+                </div>
+            </section>
+        {% endblock %}
+
+        {% block tags %}
+            <section class="sidebar-widget">
+                <div class="widget-title"><a href="{{ SITEURL }}/tags.html">Tags</a></div>
+                <div class="widget-content">
+                    {% if tags %}
+                        <ul class="tag-list">
+                            {% for element, articles in tags %}
+                                <li class="{{ 'active' if element == tag }}">
+                                    <a href="{{ SITEURL }}/{{ element.url }}"><i
+                                            class="fas fa-tag"></i> {{ element.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No tags found</p>
+                    {% endif %}
+                </div>
+            </section>
+        {% endblock %}
+    </div>
+</aside>

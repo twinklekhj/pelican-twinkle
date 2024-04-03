@@ -1,0 +1,15 @@
+{% extends "template/base.html" %}
+{% block title %}{{ super() }} - GitHub{% endblock %}
+{% block content_title %}
+    <h6 class="desc">GitHub</h6>
+    <h3 class="title"><b>GitHub Activities</b></h3>
+{% endblock %}
+{% block content %}
+    {% if GITHUB_ACTIVITY_FEED %}
+        <ul class="activity-list">
+            {% for entry in github_activity %}
+                <li><b>{{ entry[0] }}</b><br/> {{ entry[1] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+body[data-theme="dark"] {
+  --body-color: white;
+  --body-bg-color: #121212;
+  --main-color: #96F2D7;
+  --main-bg-color: #252525;
+  --element-color: #c0e8dc;
+  --element-bg-color: rgba(209, 228, 248, 0.1);
+  --header-bg-color: #1e1e1e;
+  --header-bs-color: black;
+  --footer-color: #eee;
+  --footer-bg-color: rgba(0, 0, 0, 0.8);
+  /* Tag */
+}
+body[data-theme="dark"] figure figcaption {
+  color: rgba(255, 255, 255, 0.8);
+}
+body[data-theme="dark"] img.icon-black {
+  filter: brightness(0) invert(1);
+}
+body[data-theme="dark"] blockquote {
+  background: rgba(255, 255, 255, 0.05);
+}
+body[data-theme="dark"] .header button[data-action="theme"] {
+  background: rgba(255, 255, 255, 0.1);
+}
+body[data-theme="dark"] .header button[data-action="theme"] .theme-dark {
+  height: 0;
+}
+body[data-theme="dark"] .header button[data-action="theme"] .theme-white {
+  height: 70%;
+}
+body[data-theme="dark"] .post-list {
+  border-color: #353535;
+}
+body[data-theme="dark"] .post-list li {
+  border-color: inherit;
+}
+body[data-theme="dark"] .post-list li .logo {
+  background: rgba(255, 255, 255, 0.1);
+}
+body[data-theme="dark"] .post i {
+  color: rgba(255, 255, 255, 0.2);
+}
+body[data-theme="dark"] .post .post-share-links a {
+  background: rgba(255, 255, 255, 0.1);
+}
+body[data-theme="dark"] .profile-container {
+  background: var(--main-bg-color);
+}
+body[data-theme="dark"] .profile-container .logo-area {
+  background: rgba(255, 255, 255, 0.1);
+}
+body[data-theme="dark"] .profile-container .logo-area .logo-wrapper {
+  background: black;
+}
+body[data-theme="dark"] .paginator .paginator-num li.active {
+  color: #222;
+}
+body[data-theme="dark"] .tag-container .highcharts-background {
+  fill: rgba(255, 255, 255, 0.1);
+}
+body[data-theme="dark"] .tag-container text {
+  color: white !important;
+  fill: white !important;
+}
+/*# sourceMappingURL=dark.css.map */

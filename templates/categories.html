@@ -1,0 +1,57 @@
+{% extends "template/base.html" %}
+{% block title %}
+    {{ super() + ' - Categories' }}
+{% endblock %}
+{% block content_title %}
+    <h4 class="desc">Categories</h4>
+{% endblock %}
+{% block content %}
+    <ul class="category-list">
+        {% for category, articles in categories %}
+            {% set ns = namespace() %}
+            {% set ns.imageUrl = '' %}
+            {% set ns.defaultImageUrl = SITEURL + '/{{ THEME_STATIC_DIR }}/images/icon_category.svg' %}
+
+            {% for article in articles if article.featured_image %}
+                {% set ns.imageUrl = article.featured_image|replace('{static}', SITEURL) %}
+                {% break %}
+            {% endfor %}
+
+            {% set ns.article = articles|first %}
+
+            <li>
+                <div class="category-container">
+                    <div>
+                        <a href="{{ SITEURL }}/{{ category.url }}">
+                            {% if ns.imageUrl != '' %}
+                                <img src="{{ ns.imageUrl }}" alt="{{ category|capitalize }} Preview Image"
+                                     onerror="this.src = '{{ ns.defaultImageUrl }}'">
+                            {% else %}
+                                <img src="{{ ns.defaultImageUrl }}"
+                                     alt="{{ category|capitalize }} Default Preview Image">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <h4 class="title"><a href="{{ SITEURL }}/{{ category.url }}">{{ category|capitalize }}</a></h4>
+                    <p>
+                        <span><b>{{ articles|length }}</b> posts</span>ㆍ<span>Last Updates {{ ns.article.date|strftime(DEFAULT_DATE_FORMAT) }}</span>
+                    </p>
+                </div>
+            </li>
+        {% else %}
+            <li class="no-results">
+                <div class="info">
+                    <img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/empty.png"/>
+                    <div class="info-desc">
+                        <h3>No Category Found</h3>
+                        <p>
+                            Hey, There is no category.<br/>
+                            Follow below <code>.md</code> file
+                        </p>
+                    </div>
+                </div>
+                {% include "components/_code.html" %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

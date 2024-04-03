@@ -1,0 +1,6 @@
+{% extends "index.html" %}
+{% block title %}{{ super() }} - {{ tag }} tag{% endblock %}
+{% block content_title %}
+    <h6 class="desc">Tag</h6>
+    <h3 class="title"><b>{{ tag|capitalize }}</b></h3>
+{% endblock %}

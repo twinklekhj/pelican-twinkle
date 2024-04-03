@@ -1,0 +1,26 @@
+{% extends "template/base.html" %}
+{% block content_title %}
+    <h6 class="desc">Tags</h6>
+    <h3 class="title">Tag Cloud</h3>
+    <p>click the tag if you want to go to the tag page.</p>
+{% endblock %}
+{% block content %}
+    {% set ns = namespace() %}
+    {% set ns.tags = [] %}
+
+    <div class="tag-container">
+        {% for tag, articles in tags %}
+            {% set tmp = ns.tags.append([tag.name, articles|length, SITEURL + '/' + tag.url]) %}
+        {% endfor %}
+
+
+        <div id="container"></div>
+    </div>
+
+    <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/lib/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/lib/highcharts/highcharts-more.js"></script>
+    <script>
+        const tags = {{ ns.tags }};
+    </script>
+    <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/tags.js"></script>
+{% endblock %}

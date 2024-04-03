@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+    {% block head %}
+        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+        {% block include %}
+            {% include "components/_include.html" %}
+        {% endblock %}
+    {% endblock head %}
+</head>
+<body data-theme="light" class="scrolled">
+{# Header #}
+{% block header %}
+    {% include "components/_header.html" %}
+{% endblock %}
+
+{# Apply Store #}
+<script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/store.js"></script>
+<script>
+    Action.applyTheme();
+    Action.applyOffset();
+</script>
+
+<main>
+    <div class="inner">
+        {# Sidebar #}
+        {% block sidebar %}
+            {% include "components/_sidebar.html" %}
+        {% endblock %}
+
+        {# Content #}
+        <section class="content">
+            <div class="content-header">{% block content_title %}{% endblock %}</div>
+            <div class="content-body">{% block content %}{% endblock %}</div>
+        </section>
+    </div>
+</main>
+
+{# Add analytics #}
+{% include 'components/_analytics.html' %}
+
+{# Footer #}
+{% block footer %}
+    {% include "components/_footer.html" %}
+{% endblock %}
+
+{# Apply Code style #}
+<script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/lib/code/code.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "template/base.html" %}
+{% block content_title %}
+    <h4 class="desc">Archives</h4>
+{% endblock %}
+{% block content %}
+    <dl>
+        {% for article in dates %}
+            <dt>{{ article.date|strftime(DEFAULT_DATE_FORMAT) }}</dt>
+            <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+        {% endfor %}
+    </dl>
+{% endblock %}
